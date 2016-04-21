@@ -85,9 +85,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MockDbSet\MockDbSet.csproj">
+    <ProjectReference Include="..\MockDbSetExtensions\MockDbSetExtensions.csproj">
       <Project>{CD8E361B-7A7F-4AB5-B824-EA22926A1EA0}</Project>
-      <Name>MockDbSet</Name>
+      <Name>MockDbSetExtensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

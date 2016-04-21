@@ -1,1 +1,1 @@
-nuget.exe pack MockDbSet\MockDbSet.csproj -build -properties Configuration=Release
+nuget.exe pack MockDbSetExtensions\MockDbSetExtensions.csproj -build -properties Configuration=Release

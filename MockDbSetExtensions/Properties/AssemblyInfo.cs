@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MockDbSet")]
+[assembly: AssemblyTitle("MockDbSetExtensions")]
 [assembly: AssemblyDescription("Moq extension methods for mocking DbSet with LINQ queries")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fredrik Holm")]
