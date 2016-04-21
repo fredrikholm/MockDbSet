@@ -11,7 +11,7 @@ namespace Test
 {
     /// <summary>
     /// The purpose of two test methods is to exercise the extension 
-    /// methods ReturnsDbSet and ReturnsAsyncDbSet
+    /// methods ReturnsDbSet and ReturnsDbSetAsync
     /// </summary>
     public class ExpenseServiceTests
     {
@@ -33,7 +33,7 @@ namespace Test
         {
             var expenses = new List<Expense> { new Expense { Id = 1 } };
             var mockContext = new Mock<TestContext>();
-            mockContext.Setup(p => p.Set<Expense>()).ReturnsAsyncDbSet(expenses);
+            mockContext.Setup(p => p.Set<Expense>()).ReturnsDbSetAsync(expenses);
             var service = new ExpenseService(mockContext.Object);
 
             var result = await service.GetAllAsync();

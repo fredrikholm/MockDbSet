@@ -39,17 +39,17 @@ namespace MockDbSet
             this IReturns<TContext, DbSet<TEntity>> setup,
             IEnumerable<TEntity> entities)
         where TEntity : class
-        where TContext : DbContext
+        where TContext : class
         {
             var mockSet = CreateMockDbSet(entities);
             return setup.Returns(mockSet.Object);
         }
 
-        public static IReturnsResult<TContext> ReturnsAsyncDbSet<TEntity, TContext>(
+        public static IReturnsResult<TContext> ReturnsDbSetAsync<TEntity, TContext>(
             this IReturns<TContext, DbSet<TEntity>> setup,
             IEnumerable<TEntity> entities)
         where TEntity : class
-        where TContext : DbContext
+        where TContext : class
         {
             var mockSet = CreateMockDbSetForAsync(entities);
             return setup.Returns(mockSet.Object);
