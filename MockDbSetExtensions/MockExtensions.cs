@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace MockDbSet
 {
     public static class MockExtensions
     {
+        private static readonly Dictionary<Type, Mock> MockDbSets = new Dictionary<Type, Mock>();
+
         private static Mock<DbSet<T>> CreateMockDbSet<T>(IEnumerable<T> data) where T : class
         {
             var queryableData = data.AsQueryable();
@@ -42,6 +45,7 @@ namespace MockDbSet
         where TContext : class
         {
             var mockSet = CreateMockDbSet(entities);
+            MockDbSets[typeof(TEntity)] = mockSet;
             return setup.Returns(mockSet.Object);
         }
 
@@ -52,7 +56,17 @@ namespace MockDbSet
         where TContext : class
         {
             var mockSet = CreateMockDbSetForAsync(entities);
+            MockDbSets[typeof(TEntity)] = mockSet;
             return setup.Returns(mockSet.Object);
+        }
+
+        public static Mock<DbSet<TEntity>> GetMockDbSet<TEntity>() where TEntity : class
+        {
+            if (!MockDbSets.ContainsKey(typeof(TEntity)))
+                throw new InvalidOperationException($"The DbSet for the entity type {typeof(TEntity).Name} has not been set up yet.");
+
+            var mock = MockDbSets[typeof(TEntity)];
+            return (Mock<DbSet<TEntity>>)mock;
         }
     }
 }
